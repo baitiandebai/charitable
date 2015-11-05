@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fouroo.nose.mapper.ContactMapper" >
+  <resultMap id="BaseResultMap" type="com.fouroo.nose.entity.Contact" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="phonecontent" property="phonecontent" jdbcType="VARCHAR" />
+    <result column="adress" property="adress" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="network" property="network" jdbcType="VARCHAR" />
+    <result column="worktime" property="worktime" jdbcType="VARCHAR" />
+    <result column="way" property="way" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.fouroo.nose.entity.Contact" extends="BaseResultMap" >
+    <result column="office_concept" property="officeConcept" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, phonecontent, adress, image, network, worktime, way
+  </sql>
+  <sql id="Blob_Column_List" >
+    office_concept
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from contact
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from contact
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fouroo.nose.entity.Contact" >
+    insert into contact (id, phonecontent, adress, 
+      image, network, worktime, 
+      way, office_concept)
+    values (#{id,jdbcType=INTEGER}, #{phonecontent,jdbcType=VARCHAR}, #{adress,jdbcType=VARCHAR}, 
+      #{image,jdbcType=VARCHAR}, #{network,jdbcType=VARCHAR}, #{worktime,jdbcType=VARCHAR}, 
+      #{way,jdbcType=VARCHAR}, #{officeConcept,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fouroo.nose.entity.Contact" >
+    insert into contact
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="phonecontent != null" >
+        phonecontent,
+      </if>
+      <if test="adress != null" >
+        adress,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="network != null" >
+        network,
+      </if>
+      <if test="worktime != null" >
+        worktime,
+      </if>
+      <if test="way != null" >
+        way,
+      </if>
+      <if test="officeConcept != null" >
+        office_concept,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="phonecontent != null" >
+        #{phonecontent,jdbcType=VARCHAR},
+      </if>
+      <if test="adress != null" >
+        #{adress,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="network != null" >
+        #{network,jdbcType=VARCHAR},
+      </if>
+      <if test="worktime != null" >
+        #{worktime,jdbcType=VARCHAR},
+      </if>
+      <if test="way != null" >
+        #{way,jdbcType=VARCHAR},
+      </if>
+      <if test="officeConcept != null" >
+        #{officeConcept,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fouroo.nose.entity.Contact" >
+    update contact
+    <set >
+      <if test="phonecontent != null" >
+        phonecontent = #{phonecontent,jdbcType=VARCHAR},
+      </if>
+      <if test="adress != null" >
+        adress = #{adress,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="network != null" >
+        network = #{network,jdbcType=VARCHAR},
+      </if>
+      <if test="worktime != null" >
+        worktime = #{worktime,jdbcType=VARCHAR},
+      </if>
+      <if test="way != null" >
+        way = #{way,jdbcType=VARCHAR},
+      </if>
+      <if test="officeConcept != null" >
+        office_concept = #{officeConcept,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.fouroo.nose.entity.Contact" >
+    update contact
+    set phonecontent = #{phonecontent,jdbcType=VARCHAR},
+      adress = #{adress,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      network = #{network,jdbcType=VARCHAR},
+      worktime = #{worktime,jdbcType=VARCHAR},
+      way = #{way,jdbcType=VARCHAR},
+      office_concept = #{officeConcept,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fouroo.nose.entity.Contact" >
+    update contact
+    set phonecontent = #{phonecontent,jdbcType=VARCHAR},
+      adress = #{adress,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      network = #{network,jdbcType=VARCHAR},
+      worktime = #{worktime,jdbcType=VARCHAR},
+      way = #{way,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
