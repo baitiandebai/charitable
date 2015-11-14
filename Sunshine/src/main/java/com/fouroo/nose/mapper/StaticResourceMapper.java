@@ -1,5 +1,7 @@
 package com.fouroo.nose.mapper;
 
+import java.util.List;
+
 import com.fouroo.nose.entity.StaticResource;
 
 public interface StaticResourceMapper {
@@ -14,4 +16,6 @@ public interface StaticResourceMapper {
     int updateByPrimaryKeySelective(StaticResource record);
 
     int updateByPrimaryKey(StaticResource record);
+    
+    public List<StaticResource> selectAll();
 }

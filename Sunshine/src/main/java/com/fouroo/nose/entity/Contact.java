@@ -1,5 +1,8 @@
 package com.fouroo.nose.entity;
 
+import javax.persistence.Table;
+
+@Table(name="contact")
 public class Contact {
     private Integer id;
 
